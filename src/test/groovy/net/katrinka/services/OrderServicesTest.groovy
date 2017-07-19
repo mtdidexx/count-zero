@@ -9,4 +9,9 @@ class OrderServicesTest extends Specification {
         expect:
         svc.defaultService() != null
     }
+
+    def "testing service content"() {
+        expect:
+        svc.secondService() == "The sky above the port was the color of a television tuned to a dead channel"
+    }
 }

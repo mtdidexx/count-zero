@@ -12,4 +12,9 @@ public class OrderServices {
     public String defaultService() {
         return "They set a slamhound on Turner's tail...";
     }
+
+    @RequestMapping("/foobar")
+    public String secondService() {
+        return "The sky above the port was the color of a television tuned to a dead channel";
+    }
 }
