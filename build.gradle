@@ -13,9 +13,9 @@ plugins {
     id 'org.sonarqube' version '2.5'
 }
 
-allprojects {
-    apply plugin: "com.jfrog.artifactory"
-}
+//allprojects {
+//    apply plugin: "com.jfrog.artifactory"
+//}
 
 apply plugin: 'java'
 apply plugin: 'groovy'
@@ -49,23 +49,23 @@ dependencies {
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
-artifactory {
-    contextUrl = "${artifactory_contextUrl}"   //The base Artifactory URL if not overridden by the publisher/resolver
-    publish {
-        repository {
-            repoKey = 'gradle-dev-local'
-            username = "${artifactory_user}"
-            password = "${artifactory_password}"
-            maven = true
-
-        }
-    }
-    resolve {
-        repository {
-            repoKey = 'gradle-dev'
-            username = "${artifactory_user}"
-            password = "${artifactory_password}"
-            maven = true
-        }
-    }
-}
+//artifactory {
+//    contextUrl = "${artifactory_contextUrl}"   //The base Artifactory URL if not overridden by the publisher/resolver
+//    publish {
+//        repository {
+//            repoKey = 'gradle-dev-local'
+//            username = "${artifactory_user}"
+//            password = "${artifactory_password}"
+//            maven = true
+//
+//        }
+//    }
+//    resolve {
+//        repository {
+//            repoKey = 'gradle-dev'
+//            username = "${artifactory_user}"
+//            password = "${artifactory_password}"
+//            maven = true
+//        }
+//    }
+//}
