@@ -20,7 +20,8 @@ pipeline {
                     echo "Sending email due to failure on master"
                     emailext(subject: "[${env.JOB_NAME}] Build ${BUILD_ID} Failed",
                             recipientProviders: [[$class: 'DevelopersRecipientProvider']],
-                            body: "Something is wrong with the build. Check out the details here: ${env.BUILD_URL}")
+                            body: "Something is wrong with the build. Check out the details here: ${env.BUILD_URL}",
+                            presendScript: "if (build.result.toString() == 'Failure') {msg.addHeader(\"X-Priority\", \"1 (Highest)\"); msg.addHeader(\"Importance\", \"High\");}")
                 } else {
                     echo "No Notifications for failures on branch: ${env.GIT_BRANCH}"
                 }
