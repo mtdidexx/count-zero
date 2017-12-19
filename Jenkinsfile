@@ -17,7 +17,7 @@ pipeline {
         failure {
             script {
                 if (env.GIT_BRANCH == 'master') {
-                    echo "Sending email due to failure on master to: [${env.CHANGE_AUTHOR_EMAIL}]"
+                    echo "Sending email due to failure on master"
                     emailext(subject: "[${env.JOB_NAME}] Build ${BUILD_ID} Failed",
                             recipientProviders: [[$class: 'DevelopersRecipientProvider']],
                             body: "Something is wrong with the build. Check out the details here: ${env.BUILD_URL}")
@@ -33,8 +33,6 @@ pipeline {
                     mail to: "${env.CHANGE_AUTHOR_EMAIL}",
                             subject: "[${env.JOB_NAME}] Build ${BUILD_ID} status changed",
                             body: "Build is back to normal: ${env.BUILD_URL}"
-                } else {
-                    echo 'Not sending notifications from changed block'
                 }
             }
         }
