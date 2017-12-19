@@ -22,7 +22,7 @@ pipeline {
         changed {
             echo 'Build result changed'
             script {
-                if (currentBuild.result == 'SUCCESS') {
+                if (currentBuild.result == 'SUCCESS' || currentBuild.result == null) {
                     echo "Build status has changed to: [${currentBuild.result}]"
                     mail to: 'mark-donahue@idexx.com',
                             subject: "[${env.JOB_NAME}] Build ${BUILD_ID} status changed",
