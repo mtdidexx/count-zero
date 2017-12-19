@@ -18,10 +18,9 @@ pipeline {
             script {
                 if (env.GIT_BRANCH == 'master') {
                     echo 'Sending email due to failure on master'
-                    emailext body: 'Failure message from ext email',
+                    emailext body: "${DEFAULT_CONTENT}",
                             recipientProviders: [[$class: 'FirstFailingBuildSuspectsRecipientProvider']],
-                            subject: "Build Failed: ${BUILD_ID}",
-                            to: 'abc'
+                            subject: "${DEFAULT_SUBJECT}",
                 } else {
                     echo "No Notifications for failures on branch: ${env.GIT_BRANCH}"
                 }
