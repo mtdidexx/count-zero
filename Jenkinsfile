@@ -18,8 +18,8 @@ pipeline {
             script {
                 if (env.GIT_BRANCH == 'master') {
                     echo 'Sending email due to failure on master'
-                    emailext subject: "[${env.JOB_NAME}] Build ${BUILD_ID} Failed",
-                            recipientProviders: [[$class: 'FirstFailingBuildSuspectsRecipientProvider']],
+                    mail to: "${env.CHANGE_AUTHOR_EMAIL}",
+                            subject: "[${env.JOB_NAME}] Build ${BUILD_ID} Failed",
                             body: "Something is wrong with the build. Check out the details here: ${env.BUILD_URL}"
                 } else {
                     echo "No Notifications for failures on branch: ${env.GIT_BRANCH}"
@@ -30,7 +30,7 @@ pipeline {
             script {
                 if (env.GIT_BRANCH == 'master' && (currentBuild.result == 'SUCCESS' || currentBuild.result == null)) {
                     echo "Build status on branch ${env.GIT_BRANCH} has changed to: [${currentBuild.result}]"
-                    mail to: 'mark-donahue@idexx.com',
+                    mail to: "${env.CHANGE_AUTHOR_EMAIL}",
                             subject: "[${env.JOB_NAME}] Build ${BUILD_ID} status changed",
                             body: "Build is back to normal: ${env.BUILD_URL}"
                 } else {
