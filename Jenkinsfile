@@ -20,7 +20,6 @@ pipeline {
             body: "Something is wrong with the build. Check out the details here: ${env.BUILD_URL}"
         }
         changed {
-            echo 'Build result changed'
             script {
                 if (currentBuild.result == 'SUCCESS' || currentBuild.result == null) {
                     echo "Build status has changed to: [${currentBuild.result}]"
