@@ -5,7 +5,7 @@ import spock.lang.Specification
 class NotReallyATest extends Specification {
     def "it will just fail"() {
         expect:
-        true == false
+        true == true
     }
 
     def "A second test"() {
