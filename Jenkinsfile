@@ -30,9 +30,9 @@ pipeline {
             script {
                 if (env.GIT_BRANCH == 'master' && currentBuild.currentResult == 'SUCCESS') {
                     echo "Build status on branch ${env.GIT_BRANCH} has changed to: [${currentBuild.result}]"
-                    mail to: "${env.CHANGE_AUTHOR_EMAIL}",
-                            subject: "[${env.JOB_NAME}] Build ${BUILD_ID} status changed",
-                            body: "Build is back to normal: ${env.BUILD_URL}"
+                    emailext(subject: "[${env.JOB_NAME}] Build ${BUILD_ID} status changed",
+                            body: "Build is back to normal: ${env.BUILD_URL}",
+                            recipientProviders: [[$class: 'DevelopersRecipientProvider']])
                 }
             }
         }
