@@ -3,8 +3,10 @@ pipeline {
 
     stages {
         stage('Commit') {
-            echo "Starting build ${BUILD_ID} for ${JOB_NAME}"
-            sh "./gradlew build"
+            steps{
+                echo "Starting build ${BUILD_ID} for ${JOB_NAME}"
+                sh "./gradlew build"
+            }
         }
     }
     post {
