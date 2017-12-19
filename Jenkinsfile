@@ -24,11 +24,11 @@ pipeline {
             script {
                 if (currentBuild.result == 'SUCCESS') {
                     echo "Build status has changed to: [${currentBuild.result}]"
+                    mail to: 'mark-donahue@idexx.com',
+                            subject: "[${env.JOB_NAME}] Build ${BUILD_ID} status changed",
+                            body: "Build is back to normal: ${env.BUILD_URL}"
                 }
             }
-            mail to: 'mark-donahue@idexx.com',
-                subject: "[${env.JOB_NAME}] Build ${BUILD_ID} status changed",
-                body: "Build is back to normal: ${env.BUILD_URL}"
         }
     }
 }
