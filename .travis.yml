@@ -8,10 +8,10 @@ cache:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
 
-addons:
-  sonarcloud:
-    organization: "idexx-cl"
-    token:
-      secure:
-script:
-  - sonar-scanner
+#addons:
+#  sonarcloud:
+#    organization: "idexx-cl"
+#    token:
+#      secure:
+#script:
+#  - sonar-scanner
