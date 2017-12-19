@@ -7,4 +7,13 @@ class NotReallyATest extends Specification {
         expect:
         true == true
     }
+
+    def "A second test"() {
+        expect:
+        doSomething() == true
+    }
+
+    def doSomething() {
+        return true
+    }
 }
