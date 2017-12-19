@@ -20,7 +20,7 @@ pipeline {
                     echo 'Sending email due to failure on master'
                     emailext body: "${DEFAULT_CONTENT}",
                             recipientProviders: [[$class: 'FirstFailingBuildSuspectsRecipientProvider']],
-                            subject: "${DEFAULT_SUBJECT}",
+                            subject: "${DEFAULT_SUBJECT}"
                 } else {
                     echo "No Notifications for failures on branch: ${env.GIT_BRANCH}"
                 }
