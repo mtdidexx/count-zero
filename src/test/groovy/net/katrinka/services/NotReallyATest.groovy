@@ -7,4 +7,9 @@ class NotReallyATest extends Specification {
         expect:
         false == true
     }
+
+    def "Marks toggle test"() {
+        expect:
+        true == true
+    }
 }
