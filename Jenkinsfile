@@ -19,7 +19,7 @@ pipeline {
                 if (env.GIT_BRANCH == 'master') {
                     echo "Sending email due to SUCCESS on master"
                     emailext(subject: "[${env.JOB_NAME}] Build ${BUILD_ID} SUCCESS",
-                            recipientProviders: [[$class: 'DevelopersRecipientProvider']],
+                            recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
                             body: "Build is OK. Check out the details here: ${env.BUILD_URL}")
                 } else {
                     echo "No Notifications for failures on branch: ${env.GIT_BRANCH}"
@@ -31,7 +31,7 @@ pipeline {
                 if (env.GIT_BRANCH == 'master') {
                     echo "Sending email due to failure on master"
                     emailext(subject: "[${env.JOB_NAME}] Build ${BUILD_ID} Failed",
-                            recipientProviders: [[$class: 'DevelopersRecipientProvider']],
+                            recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
                             body: "Something is wrong with the build. Check out the details here: ${env.BUILD_URL}")
                 } else {
                     echo "No Notifications for failures on branch: ${env.GIT_BRANCH}"
