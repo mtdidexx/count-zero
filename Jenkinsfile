@@ -3,16 +3,14 @@ pipeline {
 
     environment {
         ARTIFACTORY_URL = 'https://idexxlabs.jfrog.io/idexxlabs/gradle-dev'
-        artifactory_creds = credentials('jfrog-temp-login')
-        artifactory_username = ${artifactory_creds_USR}
-        artifactory_password = ${artifactory_creds_PSW}
+        ARTIFACTORY_CREDS = credentials('jfrog-temp-login')
     }
 
     stages {
         stage('Commit') {
             steps{
                 echo "Starting build ${BUILD_ID} for ${JOB_NAME}"
-                sh "./gradlew build"
+                sh "./gradlew -Partifactory_user=${ARTIFACTORY_CREDS_USR} -Partifactory_password=${ARTIFACTORY_CREDS_PSW} build"
             }
         }
     }
