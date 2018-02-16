@@ -1,6 +1,13 @@
 pipeline {
     agent any
 
+    environment {
+        ARTIFACTORY_URL = 'https://idexxlabs.jfrog.io/idexxlabs/gradle-dev'
+        artifactory_creds = credentials('jfrog-temp-login')
+        artifactory_username = ${artifactory_creds_USR}
+        artifactory_password = ${artifactory_creds_PSW}
+    }
+
     stages {
         stage('Commit') {
             steps{
