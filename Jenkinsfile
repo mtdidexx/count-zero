@@ -10,7 +10,7 @@ pipeline {
         stage('Commit') {
             steps{
                 echo "Starting build ${BUILD_ID} for ${JOB_NAME}"
-                sh "./gradlew -Partifactory_user=${ARTIFACTORY_CREDS_USR} -Partifactory_password=${ARTIFACTORY_CREDS_PSW} build"
+                sh "./gradlew -Partifactory_user=${ARTIFACTORY_CREDS_USR} -Partifactory_password=${ARTIFACTORY_CREDS_PSW} -Partifactory_contextUrl=${ARTIFACTORY_URL} build"
             }
         }
     }
